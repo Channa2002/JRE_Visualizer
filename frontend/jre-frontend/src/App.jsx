@@ -8,7 +8,7 @@ import CodeEditor      from './components/CodeEditor'
 import StepControls    from './components/StepControls'
 import ExamplesPanel   from './components/ExamplesPanel'
 
-const API_BASE = '/api'
+const API_BASE = 'https://jre-visualizer.onrender.com/api'
 
 const DEFAULT_CODE = `public class HelloJVM {
     static int counter = 0;

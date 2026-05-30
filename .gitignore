@@ -1,0 +1,12 @@
+# IDE Settings (Specific to your computer)
+.vscode/
+.idea/
+*.swp
+*.iml
+
+# OS junk files
+.DS_Store
+Thumbs.db
+
+# Any logs
+*.log

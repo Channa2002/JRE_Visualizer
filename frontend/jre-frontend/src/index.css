@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #0a0e1a;
+    color: #e2e8f0;
+    font-family: 'Space Grotesk', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #111827;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1e2d45;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2d3f5c;
+  }
+}
+
+@layer components {
+  .segment-card {
+    @apply rounded-xl border border-border bg-card p-4 flex flex-col gap-3;
+  }
+
+  .segment-header {
+    @apply flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-widest;
+  }
+
+  .memory-block {
+    @apply rounded-lg border px-3 py-2.5 font-mono text-xs transition-all duration-300;
+  }
+
+  .stack-block {
+    @apply memory-block border-stack/40 bg-stack/10 text-stack-glow;
+  }
+
+  .heap-block {
+    @apply memory-block border-heap/40 bg-heap/10 text-heap-glow;
+  }
+
+  .meta-block {
+    @apply memory-block border-meta/40 bg-meta/10 text-meta-glow;
+  }
+
+  .btn-primary {
+    @apply bg-accent hover:bg-accent/90 text-white font-semibold px-5 py-2.5 rounded-lg
+           transition-all duration-200 flex items-center gap-2 text-sm
+           shadow-accent-glow hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply border border-border bg-surface hover:bg-card text-text font-medium px-4 py-2
+           rounded-lg transition-all duration-200 flex items-center gap-2 text-sm;
+  }
+
+  .example-chip {
+    @apply px-3 py-1.5 rounded-full text-xs font-mono border transition-all duration-200 cursor-pointer;
+  }
+}
+
+/* Scan line effect for the memory panels */
+.scanline-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Glow dot for active frame */
+.active-frame-indicator {
+  animation: activeFramePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes activeFramePulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(59, 130, 246, 0.6); }
+  50% { box-shadow: 0 0 16px rgba(59, 130, 246, 1), 0 0 30px rgba(59, 130, 246, 0.4); }
+}
+
+/* Step highlight in code */
+.code-highlight-line {
+  background: rgba(139, 92, 246, 0.15);
+  border-left: 3px solid #8b5cf6;
+  display: block;
+}
+
+/* Heap arrow connector */
+.heap-ref-line {
+  border-top: 1px dashed rgba(16, 185, 129, 0.4);
+  position: relative;
+}
+
+.heap-ref-line::after {
+  content: '→';
+  position: absolute;
+  right: -8px;
+  top: -10px;
+  color: rgba(16, 185, 129, 0.7);
+  font-size: 14px;
+}
+
+/* Step event badge */
+.event-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
